@@ -4,11 +4,18 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.CAN;
 
 public class TennisBallGrabber extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public TennisBallGrabber() {}
+  public TennisBallGrabber() {
+    final CANSparkMax ElevatorMotor = new CANSparkMax(CAN.ELEVATOR, MotorType.kBrushless);
+    final CANSparkMax WinchMotor = new CANSparkMax(CAN.WINCH, MotorType.kBrushless);
+  }
 
   @Override
   public void periodic() {
