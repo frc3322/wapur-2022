@@ -6,9 +6,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class bucketGrabber extends SubsystemBase {
+public class BucketGrabber extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public bucketGrabber() {}
+  public BucketGrabber() {}
 
   @Override
   public void periodic() {
