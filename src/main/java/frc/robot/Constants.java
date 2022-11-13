@@ -21,6 +21,10 @@ public final class Constants {
         public static final int FR = 1;
         public static final int BL = 2;
         public static final int BR = 3;
+
+        //CAN for the TennisBallGrabber
+        public static final int ELEVATOR = 4;
+        public static final int WINCH = 5;
     }
 
 }

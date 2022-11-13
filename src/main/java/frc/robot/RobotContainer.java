@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.bucketGrabber;
+import frc.robot.subsystems.BucketGrabber;
 import frc.robot.subsystems.TennisBallGrabber;
 import frc.robot.subsystems.RapidReactGrabber;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -25,7 +25,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain drivetrain = new Drivetrain();
-  private final bucketGrabber bucketGrab = new bucketGrabber();
+  private final BucketGrabber bucketGrab = new BucketGrabber();
   private final TennisBallGrabber tennisGrab = new TennisBallGrabber();
   private final RapidReactGrabber rapidReactGrabber = new RapidReactGrabber();
 
