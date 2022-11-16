@@ -4,11 +4,17 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.CAN;
 
 public class RapidReactGrabber extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public RapidReactGrabber() {}
+  public RapidReactGrabber() {
+    final CANSparkMax roller = new CANSparkMax(CAN.ROLLER, MotorType.kBrushless);
+  }
 
   @Override
   public void periodic() {
