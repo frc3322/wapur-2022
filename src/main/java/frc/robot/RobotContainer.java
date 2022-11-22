@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
@@ -13,6 +14,7 @@ import frc.robot.subsystems.BucketGrabber;
 import frc.robot.subsystems.TennisBallGrabber;
 import frc.robot.subsystems.RapidReactGrabber;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 
 
 /**
@@ -32,11 +34,20 @@ public class RobotContainer {
   private final CommandXboxController driverController = new CommandXboxController(0);
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final Command driveCommand = new RunCommand(
+    ()->{
+      double speed = MathUtil.applyDeadband(-driverController.getLeftY(), 0.09);
+      double turn = MathUtil.applyDeadband(driverController.getRightX(), 0.08);
+      drivetrain.drive(speed, turn);
+    }
+    , drivetrain);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    drivetrain.setDefaultCommand(driveCommand);
   }
 
   /**

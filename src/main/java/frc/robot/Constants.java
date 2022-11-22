@@ -25,6 +25,9 @@ public final class Constants {
         //CAN for the TennisBallGrabber
         public static final int ELEVATOR = 4;
         public static final int WINCH = 5;
+
+          // CAN for rapid react ball grabber
+          public static final int ROLLER = 6;
     }
 
 }
