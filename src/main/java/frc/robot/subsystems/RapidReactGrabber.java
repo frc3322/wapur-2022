@@ -12,9 +12,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CAN;;
 
 public class RapidReactGrabber extends SubsystemBase {
+  
+private final CANSparkMax roller = new CANSparkMax(CAN.ROLLER, MotorType.kBrushless);
   /** Creates a new ExampleSubsystem. */
   public RapidReactGrabber() {
-    final CANSparkMax roller = new CANSparkMax(CAN.ROLLER, MotorType.kBrushless);
+    
   }
 
   @Override

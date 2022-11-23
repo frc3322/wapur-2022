@@ -12,11 +12,13 @@ import frc.robot.Constants.CAN;
 
 public class TennisBallGrabber extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public TennisBallGrabber() {
-    final CANSparkMax ElevatorMotor = new CANSparkMax(CAN.ELEVATOR, MotorType.kBrushless);
-    final CANSparkMax WinchMotor = new CANSparkMax(CAN.WINCH, MotorType.kBrushless);
-  }
+  private final CANSparkMax ElevatorMotor = new CANSparkMax(CAN.ELEVATOR, MotorType.kBrushless);
+  private final CANSparkMax WinchMotor = new CANSparkMax(CAN.WINCH, MotorType.kBrushless);
 
+  public TennisBallGrabber() {
+    
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
