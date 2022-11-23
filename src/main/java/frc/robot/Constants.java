@@ -28,6 +28,8 @@ public final class Constants {
 
           // CAN for rapid react ball grabber
           public static final int ROLLER = 6;
+        
+          public static final int BUCKET_GRABBER = 7;
     }
 
 }

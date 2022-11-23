@@ -15,6 +15,7 @@ import frc.robot.subsystems.TennisBallGrabber;
 import frc.robot.subsystems.RapidReactGrabber;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 
 
 /**
@@ -57,7 +58,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
+    driverController.x().whenHeld(new StartEndCommand(
+      () -> {
+        bucketGrab.setPower(0.01f);
+      },
+      () -> {
+        bucketGrab.setPower(0.0f);
+      }, bucketGrab
+      ));
     
   }
 
