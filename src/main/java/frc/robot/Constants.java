@@ -17,19 +17,19 @@ public final class Constants {
     public static final class CAN{
 
         //CAN for the drive motors
-        public static final int FL = 0;
-        public static final int FR = 1;
-        public static final int BL = 2;
+        public static final int FL = 11;
+        public static final int FR = 2;
+        public static final int BL = 4;
         public static final int BR = 3;
 
         //CAN for the TennisBallGrabber
-        public static final int ELEVATOR = 4;
-        public static final int WINCH = 5;
+        public static final int ELEVATOR = 100;
+        public static final int WINCH = 101;
 
           // CAN for rapid react ball grabber
-          public static final int ROLLER = 6;
+          public static final int ROLLER = 102;
         
-          public static final int BUCKET_GRABBER = 7;
+          public static final int BUCKET_GRABBER = 8;
     }
 
 }
