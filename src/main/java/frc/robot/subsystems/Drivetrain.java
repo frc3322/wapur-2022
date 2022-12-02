@@ -57,9 +57,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void drive(double speed, double turn){
-    WheelSpeeds curvatureSpeeds = DifferentialDrive.curvatureDriveIK(speed, turn, true);
-    FLMotor.set(curvatureSpeeds.left);
-    FRMotor.set(curvatureSpeeds.right);
+    robotDrive.arcadeDrive(speed, turn);
     robotDrive.feed();
   }
 
@@ -67,6 +65,15 @@ public class Drivetrain extends SubsystemBase {
     
     FLMotor.setVoltage(left);
     FRMotor.setVoltage(right);
+
+    //update voltage variables
+    robotDrive.feed();
+  }
+
+  public final void tankDrive(double left, double right){
+    
+    FLMotor.set(left);
+    FRMotor.set(right);
 
     //update voltage variables
     robotDrive.feed();

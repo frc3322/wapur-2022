@@ -37,9 +37,9 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final Command driveCommand = new RunCommand(
     ()->{
-      double speed = MathUtil.applyDeadband(-driverController.getLeftY(), 0.09);
-      double turn = MathUtil.applyDeadband(driverController.getRightX(), 0.08);
-      drivetrain.drive(speed, turn);
+      double left = MathUtil.applyDeadband(-driverController.getLeftY(), 0.09);
+      double right = MathUtil.applyDeadband(driverController.getRightY(), 0.08);
+      drivetrain.tankDrive(left, right);
     }
     , drivetrain);
 
