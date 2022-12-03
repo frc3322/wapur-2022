@@ -21,7 +21,7 @@ public class Drivetrain extends SubsystemBase {
   private final CANSparkMax BLMotor = new CANSparkMax(CAN.BL, MotorType.kBrushless);
   private final CANSparkMax BRMotor = new CANSparkMax(CAN.BR, MotorType.kBrushless);
 
- // private final DifferentialDrive robotDrive = new DifferentialDrive(FLMotor, FRMotor);
+  private final DifferentialDrive robotDrive = new DifferentialDrive(FLMotor, FRMotor);
   /** Creates a new ExampleSubsystem. */
   public Drivetrain() {
     
@@ -60,8 +60,8 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void drive(double speed, double turn){
-   // robotDrive.arcadeDrive(speed, turn);
-   // robotDrive.feed();
+    robotDrive.arcadeDrive(speed, turn);
+    robotDrive.feed();
   }
 
   public final void tankDriveVolts(double left, double right){
@@ -70,7 +70,7 @@ public class Drivetrain extends SubsystemBase {
     FRMotor.setVoltage(right);
 
     //update voltage variables
-   // robotDrive.feed();
+    robotDrive.feed();
   }
 
   public final void tankDrive(double left, double right){
@@ -79,7 +79,7 @@ public class Drivetrain extends SubsystemBase {
     FRMotor.set(right);
 
     //update voltage variables
-    //robotDrive.feed();
+  robotDrive.feed();
   }
 
 

@@ -37,9 +37,9 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final Command driveCommand = new RunCommand(
     ()->{
-      double left = MathUtil.applyDeadband(driverController.getLeftY()/4, 0.09);
-      double right = MathUtil.applyDeadband(driverController.getRightY()/4, 0.08);
-      drivetrain.tankDrive(left, right);
+      double left = MathUtil.applyDeadband(driverController.getLeftY(), 0.09);
+      double right = MathUtil.applyDeadband(-driverController.getRightX(), 0.08);
+      drivetrain.drive(left, right);
     }
     , drivetrain);
 
@@ -60,7 +60,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     driverController.x().whenHeld(new StartEndCommand(
       () -> {
-        bucketGrab.setPower(0.05);
+        bucketGrab.setPower(0.1);
       },
       () -> {
         bucketGrab.setPower(0.0);
@@ -69,7 +69,7 @@ public class RobotContainer {
     
     driverController.y().whenHeld(new StartEndCommand(
       () -> {
-        bucketGrab.setPower(-0.05);;
+        bucketGrab.setPower(-0.1);;
       },
       () -> {
         bucketGrab.setPower(0);
