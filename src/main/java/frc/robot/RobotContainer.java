@@ -75,6 +75,33 @@ public class RobotContainer {
         bucketGrab.setPower(0);
       }, bucketGrab
     ));
+
+    /*driverController.a().whenHeld(new StartEndCommand(
+      () -> {
+        //onInit
+        rapidReactGrabber.setPower(0.01);
+      },
+      () -> {
+        //onEnd
+        rapidReactGrabber.setPower(0.0);
+      },
+      // target subsystem      
+      rapidReactGrabber
+      ));
+   
+    driverController.b().whenHeld(new StartEndCommand(
+      () -> {
+        //onInit
+        rapidReactGrabber.setPower(-0.01);
+      },
+      () -> {
+        //onEnd
+        rapidReactGrabber.setPower(0);
+      },
+      //target subsystem
+      rapidReactGrabber
+    ));*/
+
   }
 
   /**
