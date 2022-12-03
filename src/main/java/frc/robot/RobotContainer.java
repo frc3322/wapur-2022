@@ -67,6 +67,14 @@ public class RobotContainer {
       }, bucketGrab
       ));
     
+    driverController.y().whenHeld(new StartEndCommand(
+      () -> {
+        bucketGrab.setPower(-0.01);;
+      },
+      () -> {
+        bucketGrab.setPower(0);
+      }, bucketGrab
+    ));
   }
 
   /**
