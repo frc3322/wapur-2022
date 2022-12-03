@@ -19,8 +19,8 @@ public final class Constants {
         //CAN for the drive motors
         public static final int FL = 11;
         public static final int FR = 4;//2
-        public static final int BL = 2;//4
-        public static final int BR = 3; //3
+        public static final int BL = 3;//4
+        public static final int BR = 2; //3
 
         //CAN for the TennisBallGrabber
         public static final int ELEVATOR = 100;
