@@ -12,6 +12,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.BucketGrabber;
 import frc.robot.subsystems.TennisBallGrabber;
+import io.github.oblarg.oblog.Logger;
 import frc.robot.subsystems.RapidReactGrabber;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -47,6 +48,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    //Logger.configureLoggingAndConfig(this, false);
 
     drivetrain.setDefaultCommand(driveCommand);
   }
@@ -113,4 +115,7 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
+  // public void updateLogger(){
+  //   Logger.updateEntries();
+  // }
 }
