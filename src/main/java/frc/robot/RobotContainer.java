@@ -7,14 +7,13 @@ package frc.robot;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.BucketGrabber;
 import frc.robot.subsystems.TennisBallGrabber;
 import io.github.oblarg.oblog.Logger;
 import frc.robot.subsystems.RapidReactGrabber;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 
@@ -27,15 +26,16 @@ import edu.wpi.first.wpilibj2.command.StartEndCommand;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+ 
   private final Drivetrain drivetrain = new Drivetrain();
   private final BucketGrabber bucketGrab = new BucketGrabber();
   private final TennisBallGrabber tennisGrab = new TennisBallGrabber();
   private final RapidReactGrabber rapidReactGrabber = new RapidReactGrabber();
 
   private final CommandXboxController driverController = new CommandXboxController(0);
+  private final CommandXboxController testController = new CommandXboxController(1);
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+ 
   private final Command driveCommand = new RunCommand(
     ()->{
       double left = MathUtil.applyDeadband(driverController.getLeftY(), 0.09);
@@ -78,6 +78,31 @@ public class RobotContainer {
       }, bucketGrab
     ));
 
+    testController.leftBumper().whenHeld(new StartEndCommand(
+      () ->
+    {
+      rapidReactGrabber.extendIntake();
+      rapidReactGrabber.setPower(1);
+    } , 
+    () ->
+    {
+      rapidReactGrabber.setPower(0);
+      rapidReactGrabber.retractIntake();
+      
+    }, rapidReactGrabber));
+
+    testController.a().whenPressed(new InstantCommand(
+      ()-> {
+        rapidReactGrabber.compOff();
+      }
+      ), false);
+
+      testController.y().whenPressed(new InstantCommand(
+      ()-> {
+        rapidReactGrabber.compOn();
+      }
+      ), false);
+
     /*driverController.a().whenHeld(new StartEndCommand(
       () -> {
         //onInit
@@ -113,7 +138,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
   // public void updateLogger(){
   //   Logger.updateEntries();
