@@ -8,7 +8,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Goof extends SubsystemBase {
   /** Creates a new goof. */
-  public Goof() {}
+  
+  
+  
+  public Goof() {
+
+  }
 
   @Override
   public void periodic() {
