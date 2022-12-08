@@ -60,20 +60,68 @@ public class RobotContainer {
   private void configureButtonBindings() {
     driverController.x().whenHeld(new StartEndCommand(
       () -> {
+        //onInit
         bucketGrab.setPower(0.05);
       },
       () -> {
+        //onEnd
         bucketGrab.setPower(0.0);
-      }, bucketGrab
+      },
+      //target subsystem 
+      bucketGrab
       ));
     
     driverController.y().whenHeld(new StartEndCommand(
       () -> {
+        //onInit
         bucketGrab.setPower(-0.05);;
       },
       () -> {
+        //onEnd
         bucketGrab.setPower(0);
-      }, bucketGrab
+      }, 
+      //target subsystem
+      bucketGrab
+      
+    ));
+    driverController.x().whenHeld(new StartEndCommand(
+      () -> {
+        //onInit
+        bucketGrab.setPower(0.05);
+      },
+      () -> {
+        //onEnd
+        bucketGrab.setPower(0.0);
+      },
+      //target subsystem 
+      bucketGrab
+      ));
+    
+    driverController.leftBumper().whenHeld(new StartEndCommand(
+      () -> {
+        //onInit
+        tennisGrab.setPowerWinch(0.05);;
+      },
+      () -> {
+        //onEnd
+        tennisGrab.setPowerWinch(0);
+      }, 
+      //target subsystem
+      tennisGrab
+      
+    ));
+    driverController.rightBumper().whenHeld(new StartEndCommand(
+      () -> {
+        //onInit
+        tennisGrab.setPowerWinch(-0.05);;
+      },
+      () -> {
+        //onEnd
+        tennisGrab.setPowerWinch(0);
+      }, 
+      //target subsystem
+      tennisGrab
+      
     ));
 
     /*driverController.a().whenHeld(new StartEndCommand(
@@ -102,6 +150,7 @@ public class RobotContainer {
       rapidReactGrabber
     ));*/
 
+    
   }
 
   /**
