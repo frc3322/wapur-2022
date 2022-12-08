@@ -2,7 +2,9 @@ plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2022.4.1"
 }
-
+repositories {
+  maven { url 'https://jitpack.io' }
+}
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
@@ -66,6 +68,8 @@ dependencies {
     simulationRelease wpi.sim.enableRelease()
 
     testImplementation 'junit:junit:4.13.1'
+
+    implementation "com.github.Oblarg:Oblog:5.1.0"
 }
 
 // Simulation configuration (e.g. environment variables).
