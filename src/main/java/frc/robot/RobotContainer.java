@@ -62,12 +62,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     driverController.x().whenHeld(new StartEndCommand(
       () -> {
-<<<<<<< HEAD
-        //onInit
-        bucketGrab.setPower(0.05);
-=======
         bucketGrab.setPower(0.1);
->>>>>>> e9830d82ade6632d5aecd941d87aadfb418ec40d
       },
       () -> {
         //onEnd
@@ -79,12 +74,7 @@ public class RobotContainer {
     
     driverController.y().whenHeld(new StartEndCommand(
       () -> {
-<<<<<<< HEAD
-        //onInit
-        bucketGrab.setPower(-0.05);;
-=======
-        bucketGrab.setPower(-0.1);;
->>>>>>> e9830d82ade6632d5aecd941d87aadfb418ec40d
+        bucketGrab.setPower(-0.1);
       },
       () -> {
         //onEnd
