@@ -48,7 +48,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    //Logger.configureLoggingAndConfig(this, false);
+    Logger.configureLoggingAndConfig(this, false);
 
     drivetrain.setDefaultCommand(driveCommand);
   }
@@ -74,7 +74,7 @@ public class RobotContainer {
     
     driverController.y().whenHeld(new StartEndCommand(
       () -> {
-        bucketGrab.setPower(-0.1);
+        bucketGrab.setPower(-0.4);
       },
       () -> {
         //onEnd
@@ -87,7 +87,7 @@ public class RobotContainer {
     driverController.x().whenHeld(new StartEndCommand(
       () -> {
         //onInit
-        bucketGrab.setPower(0.05);
+        bucketGrab.setPower(0.4);
       },
       () -> {
         //onEnd
@@ -124,30 +124,30 @@ public class RobotContainer {
       
     ));
 
-    testController.leftBumper().whenHeld(new StartEndCommand(
-      () ->
-    {
-      rapidReactGrabber.extendIntake();
-      rapidReactGrabber.setPower(1);
-    } , 
-    () ->
-    {
-      rapidReactGrabber.setPower(0);
-      rapidReactGrabber.retractIntake();
+    // testController.leftBumper().whenHeld(new StartEndCommand(
+    //   () ->
+    // {
+    //   rapidReactGrabber.extendIntake();
+    //   rapidReactGrabber.setPower(1);
+    // } , 
+    // () ->
+    // {
+    //   rapidReactGrabber.setPower(0);
+    //   rapidReactGrabber.retractIntake();
       
-    }, rapidReactGrabber));
+    // }, rapidReactGrabber));
 
-    testController.a().whenPressed(new InstantCommand(
-      ()-> {
-        rapidReactGrabber.compOff();
-      }
-      ), false);
+    // testController.a().whenPressed(new InstantCommand(
+    //   ()-> {
+    //     rapidReactGrabber.compOff();
+    //   }
+    //   ), false);
 
-      testController.y().whenPressed(new InstantCommand(
-      ()-> {
-        rapidReactGrabber.compOn();
-      }
-      ), false);
+    //   testController.y().whenPressed(new InstantCommand(
+    //   ()-> {
+    //     rapidReactGrabber.compOn();
+    //   }
+    //   ), false);
 
     /*driverController.a().whenHeld(new StartEndCommand(
       () -> {
@@ -187,7 +187,7 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return null;
   }
-  // public void updateLogger(){
-  //   Logger.updateEntries();
-  // }
+  public void updateLogger(){
+    Logger.updateEntries();
+  }
 }

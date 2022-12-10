@@ -9,16 +9,16 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.Constants.CAN;
-import io.github.oblarg.oblog.Loggable;
-import io.github.oblarg.oblog.annotations.Config;
-import io.github.oblarg.oblog.annotations.Log;
+//import io.github.oblarg.oblog.Loggable;
+//import io.github.oblarg.oblog.annotations.Config;
+//import io.github.oblarg.oblog.annotations.Log;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Drivetrain extends SubsystemBase implements Loggable{
+public class Drivetrain extends SubsystemBase {
 
   private final CANSparkMax FRMotor = new CANSparkMax(CAN.FR, MotorType.kBrushless);
   private final CANSparkMax FLMotor = new CANSparkMax(CAN.FL, MotorType.kBrushless);
@@ -30,7 +30,7 @@ public class Drivetrain extends SubsystemBase implements Loggable{
   SlewRateLimiter accelLimit = new SlewRateLimiter(1.2);
   SlewRateLimiter turnLimit = new SlewRateLimiter(2);
 
-  @Log
+ // @Log
   private double hi = 0.01;
 
   /** Creates a new ExampleSubsystem. */
@@ -63,7 +63,7 @@ public class Drivetrain extends SubsystemBase implements Loggable{
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    hi++;
+    
   }
 
   @Override
@@ -85,7 +85,7 @@ public class Drivetrain extends SubsystemBase implements Loggable{
     robotDrive.feed();
   }
 
-  @Config
+  //@Config
   public final void tankDrive(double left, double right){
     
     FLMotor.set(left);

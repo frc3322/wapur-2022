@@ -31,8 +31,8 @@ public final class Constants {
         
           public static final int BUCKET_GRABBER = 8;
 
-          public static final int forwardSolenoid = 1;
-          public static final int backwardSolenoid = 2;
+          public static final int forwardSolenoid = 0;
+          public static final int backwardSolenoid = 1;
     }
 
 }
