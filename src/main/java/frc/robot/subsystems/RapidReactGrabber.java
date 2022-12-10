@@ -19,8 +19,8 @@ import frc.robot.Constants.CAN;
 public class RapidReactGrabber extends SubsystemBase {
  
 private final CANSparkMax roller = new CANSparkMax(CAN.ROLLER, MotorType.kBrushless);
-private final Compressor rrCompressor = new Compressor(1, PneumaticsModuleType.CTREPCM);
-//private final DoubleSolenoid rrSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, CAN.forwardSolenoid, CAN.backwardSolenoid);
+//private final Compressor rrCompressor = new Compressor(1, PneumaticsModuleType.CTREPCM);
+private final DoubleSolenoid rrSolenoid = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, CAN.forwardSolenoid, CAN.backwardSolenoid);
 
   /** Creates a new ExampleSubsystem. */
   public RapidReactGrabber() {

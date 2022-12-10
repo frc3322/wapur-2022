@@ -14,14 +14,14 @@ import frc.robot.Constants.CAN;
 public class TennisBallGrabber extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   private final CANSparkMax ElevatorMotor = new CANSparkMax(CAN.ELEVATOR, MotorType.kBrushless);
-  private final CANSparkMax WinchMotor = new CANSparkMax(CAN.WINCH, MotorType.kBrushless);
+  private final CANSparkMax BoxMotor = new CANSparkMax(CAN.BOX, MotorType.kBrushless);
 
   public TennisBallGrabber() {
     ElevatorMotor.setIdleMode(IdleMode.kBrake);
     ElevatorMotor.burnFlash();
     
-    WinchMotor.setIdleMode(IdleMode.kBrake);
-    WinchMotor.burnFlash();
+    BoxMotor.setIdleMode(IdleMode.kBrake);
+    BoxMotor.burnFlash();
   }
   
   
@@ -32,8 +32,8 @@ public class TennisBallGrabber extends SubsystemBase {
   public void setPowerElevator(double power) {
     ElevatorMotor.set(power);
   }
-  public void setPowerWinch(double power) {
-    WinchMotor.set(power);
+  public void setPowerBox(double power) {
+    BoxMotor.set(power);
   }
   @Override
   public void simulationPeriodic() {

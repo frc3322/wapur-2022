@@ -100,11 +100,11 @@ public class RobotContainer {
     driverController.leftBumper().whenHeld(new StartEndCommand(
       () -> {
         //onInit
-        tennisGrab.setPowerWinch(0.05);;
+        tennisGrab.setPowerBox(0.05);
       },
       () -> {
         //onEnd
-        tennisGrab.setPowerWinch(0);
+        tennisGrab.setPowerBox(0);
       }, 
       //target subsystem
       tennisGrab
@@ -113,11 +113,38 @@ public class RobotContainer {
     driverController.rightBumper().whenHeld(new StartEndCommand(
       () -> {
         //onInit
-        tennisGrab.setPowerWinch(-0.05);;
+        tennisGrab.setPowerBox(-0.05);
       },
       () -> {
         //onEnd
-        tennisGrab.setPowerWinch(0);
+        tennisGrab.setPowerBox(0);
+      }, 
+      //target subsystem
+      tennisGrab
+      
+    ));
+    driverController.a().whenHeld(new StartEndCommand(
+      () -> {
+        //onInit
+        tennisGrab.setPowerElevator(0.05);
+      },
+      () -> {
+        //onEnd
+        tennisGrab.setPowerElevator(0);
+      }, 
+      //target subsystem
+      tennisGrab
+      
+    ));
+
+    driverController.b().whenHeld(new StartEndCommand(
+      () -> {
+        //onInit
+        tennisGrab.setPowerElevator(-0.05);
+      },
+      () -> {
+        //onEnd
+        tennisGrab.setPowerElevator(0);
       }, 
       //target subsystem
       tennisGrab
