@@ -60,17 +60,6 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    driverController.x().whenHeld(new StartEndCommand(
-      () -> {
-        bucketGrab.setPower(0.1);
-      },
-      () -> {
-        //onEnd
-        bucketGrab.setPower(0.0);
-      },
-      //target subsystem 
-      bucketGrab
-      ));
     
     driverController.y().whenHeld(new StartEndCommand(
       () -> {
