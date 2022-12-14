@@ -26,13 +26,17 @@ public final class Constants {
         public static final int ELEVATOR = 13;
         public static final int BOX = 12;
 
-          // CAN for rapid react ball grabber
-          public static final int ROLLER = 102;
-        
-          public static final int BUCKET_GRABBER = 8;
+        // CAN for rapid react ball grabber
+        public static final int ROLLER = 102;
+    
+        public static final int BUCKET_GRABBER = 8;
 
-          public static final int forwardSolenoid = 0;
-          public static final int backwardSolenoid = 1;
+        public static final int forwardSolenoid = 0;
+        public static final int backwardSolenoid = 1;
+
+        //LED CAN
+        public static final int LED = 103;
+        
     }
 
 }
