@@ -28,7 +28,7 @@ public class Drivetrain extends SubsystemBase {
   private final DifferentialDrive robotDrive = new DifferentialDrive(FLMotor, FRMotor);
 
   SlewRateLimiter accelLimit = new SlewRateLimiter(1.2);
-  SlewRateLimiter turnLimit = new SlewRateLimiter(2);
+  SlewRateLimiter turnLimit = new SlewRateLimiter(2.5);
 
  // @Log
   private double hi = 0.01;
@@ -72,7 +72,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void drive(double speed, double turn){
-    robotDrive.curvatureDrive(accelLimit.calculate(speed), turnLimit.calculate(turn), (speed<0.04));
+    robotDrive.curvatureDrive(accelLimit.calculate(speed), turnLimit.calculate(turn), speed<0.04);
     robotDrive.feed();
   }
 

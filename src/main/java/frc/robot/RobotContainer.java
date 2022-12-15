@@ -40,7 +40,7 @@ public class RobotContainer {
     ()->{
       double left = MathUtil.applyDeadband(driverController.getLeftY(), 0.09);
       double right = MathUtil.applyDeadband(-driverController.getRightX(), 0.08);
-      drivetrain.drive(left, right);
+      drivetrain.drive(.75 *left, .75*right);
     }
     , drivetrain);
 
@@ -61,9 +61,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     
-    driverController.y().whenHeld(new StartEndCommand(
+    driverController.rightBumper().whenHeld(new StartEndCommand(
       () -> {
-        bucketGrab.setPower(-0.4);
+        bucketGrab.setPower(-0.2);
       },
       () -> {
         //onEnd
@@ -73,10 +73,10 @@ public class RobotContainer {
       bucketGrab
       
     ));
-    driverController.x().whenHeld(new StartEndCommand(
+    driverController.leftBumper().whenHeld(new StartEndCommand(
       () -> {
         //onInit
-        bucketGrab.setPower(0.4);
+        bucketGrab.setPower(0.2);
       },
       () -> {
         //onEnd
@@ -86,10 +86,10 @@ public class RobotContainer {
       bucketGrab
       ));
     
-    driverController.leftBumper().whenHeld(new StartEndCommand(
+    testController.leftBumper().whenHeld(new StartEndCommand(
       () -> {
         //onInit
-        tennisGrab.setPowerBox(0.05);
+        tennisGrab.setPowerBox(0.1);
       },
       () -> {
         //onEnd
@@ -99,10 +99,10 @@ public class RobotContainer {
       tennisGrab
       
     ));
-    driverController.rightBumper().whenHeld(new StartEndCommand(
+    testController.rightBumper().whenHeld(new StartEndCommand(
       () -> {
         //onInit
-        tennisGrab.setPowerBox(-0.05);
+        tennisGrab.setPowerBox(-0.1);
       },
       () -> {
         //onEnd
@@ -112,46 +112,46 @@ public class RobotContainer {
       tennisGrab
       
     ));
+    testController.a().whenHeld(new StartEndCommand(
+      () -> {
+        //onInit
+        tennisGrab.setPowerElevator(0.2);
+      },
+      () -> {
+        //onEnd
+        tennisGrab.setPowerElevator(0);
+      }, 
+      //target subsystem
+      tennisGrab
+      
+    ));
+
+    testController.b().whenHeld(new StartEndCommand(
+      () -> {
+        //onInit
+        tennisGrab.setPowerElevator(-0.2);
+      },
+      () -> {
+        //onEnd
+        tennisGrab.setPowerElevator(0);
+      }, 
+      //target subsystem
+      tennisGrab
+      
+    ));
+
     driverController.a().whenHeld(new StartEndCommand(
-      () -> {
-        //onInit
-        tennisGrab.setPowerElevator(0.05);
-      },
-      () -> {
-        //onEnd
-        tennisGrab.setPowerElevator(0);
-      }, 
-      //target subsystem
-      tennisGrab
+      () ->
+    {
+      rapidReactGrabber.extendIntake();
+      rapidReactGrabber.setPower(1);
+    } , 
+    () ->
+    {
+      rapidReactGrabber.setPower(0);
+      rapidReactGrabber.retractIntake();
       
-    ));
-
-    driverController.b().whenHeld(new StartEndCommand(
-      () -> {
-        //onInit
-        tennisGrab.setPowerElevator(-0.05);
-      },
-      () -> {
-        //onEnd
-        tennisGrab.setPowerElevator(0);
-      }, 
-      //target subsystem
-      tennisGrab
-      
-    ));
-
-    // testController.leftBumper().whenHeld(new StartEndCommand(
-    //   () ->
-    // {
-    //   rapidReactGrabber.extendIntake();
-    //   rapidReactGrabber.setPower(1);
-    // } , 
-    // () ->
-    // {
-    //   rapidReactGrabber.setPower(0);
-    //   rapidReactGrabber.retractIntake();
-      
-    // }, rapidReactGrabber));
+    }, rapidReactGrabber));
 
     // testController.a().whenPressed(new InstantCommand(
     //   ()-> {

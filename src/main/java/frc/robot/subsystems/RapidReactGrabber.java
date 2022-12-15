@@ -44,13 +44,13 @@ private final DoubleSolenoid rrSolenoid = new DoubleSolenoid(0, PneumaticsModule
     // This method will be called once per scheduler run during simulation
   }
 
-  // public void extendIntake(){
-  //   rrSolenoid.set(Value.kForward);
-  // }
+  public void extendIntake(){
+    rrSolenoid.set(Value.kForward);
+  }
 
-  // public void retractIntake(){
-  //   rrSolenoid.set(Value.kReverse);
-  // }
+  public void retractIntake(){
+    rrSolenoid.set(Value.kReverse);
+  }
 
   // public void compOn(){
   //   rrCompressor.enableDigital();
