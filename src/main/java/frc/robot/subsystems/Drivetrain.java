@@ -16,7 +16,9 @@ import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class Drivetrain extends SubsystemBase {
 
@@ -28,7 +30,7 @@ public class Drivetrain extends SubsystemBase {
   private final DifferentialDrive robotDrive = new DifferentialDrive(FLMotor, FRMotor);
 
   SlewRateLimiter accelLimit = new SlewRateLimiter(1.2);
-  SlewRateLimiter turnLimit = new SlewRateLimiter(2.5);
+  SlewRateLimiter turnLimit = new SlewRateLimiter(1);
 
  // @Log
   private double hi = 0.01;
@@ -85,6 +87,8 @@ public class Drivetrain extends SubsystemBase {
     robotDrive.feed();
   }
 
+  
+
   //@Config
   public final void tankDrive(double left, double right){
     
@@ -93,6 +97,23 @@ public class Drivetrain extends SubsystemBase {
 
     //update voltage variables
   robotDrive.feed();
+  }
+
+  public Command auton(){
+    return new InstantCommand(
+      ()->{
+        tankDrive(0.2, 0.2);
+      }
+      )
+      .andThen
+      (new WaitCommand(2))
+      .andThen(
+        new InstantCommand(
+          ()->
+          {
+            tankDrive(0.2, 0.2);
+          })
+      );
   }
 
 

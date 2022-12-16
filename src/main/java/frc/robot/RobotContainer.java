@@ -60,8 +60,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
-    driverController.rightBumper().whenHeld(new StartEndCommand(
+    //down?
+    driverController.leftBumper().whenHeld(new StartEndCommand(
       () -> {
         bucketGrab.setPower(-0.2);
       },
@@ -73,7 +73,9 @@ public class RobotContainer {
       bucketGrab
       
     ));
-    driverController.leftBumper().whenHeld(new StartEndCommand(
+
+    //up?
+    driverController.rightBumper().whenHeld(new StartEndCommand(
       () -> {
         //onInit
         bucketGrab.setPower(0.2);
@@ -86,6 +88,7 @@ public class RobotContainer {
       bucketGrab
       ));
     
+      //up
     testController.leftBumper().whenHeld(new StartEndCommand(
       () -> {
         //onInit
@@ -99,6 +102,7 @@ public class RobotContainer {
       tennisGrab
       
     ));
+    //down
     testController.rightBumper().whenHeld(new StartEndCommand(
       () -> {
         //onInit
@@ -112,6 +116,8 @@ public class RobotContainer {
       tennisGrab
       
     ));
+
+    //up
     testController.a().whenHeld(new StartEndCommand(
       () -> {
         //onInit
@@ -126,6 +132,7 @@ public class RobotContainer {
       
     ));
 
+    //down
     testController.b().whenHeld(new StartEndCommand(
       () -> {
         //onInit
@@ -153,43 +160,20 @@ public class RobotContainer {
       
     }, rapidReactGrabber));
 
-    // testController.a().whenPressed(new InstantCommand(
-    //   ()-> {
-    //     rapidReactGrabber.compOff();
-    //   }
-    //   ), false);
-
-    //   testController.y().whenPressed(new InstantCommand(
-    //   ()-> {
-    //     rapidReactGrabber.compOn();
-    //   }
-    //   ), false);
-
-    /*driverController.a().whenHeld(new StartEndCommand(
-      () -> {
-        //onInit
-        rapidReactGrabber.setPower(0.01);
-      },
-      () -> {
-        //onEnd
-        rapidReactGrabber.setPower(0.0);
-      },
-      // target subsystem      
-      rapidReactGrabber
-      ));
-   
     driverController.b().whenHeld(new StartEndCommand(
-      () -> {
-        //onInit
-        rapidReactGrabber.setPower(-0.01);
-      },
-      () -> {
-        //onEnd
-        rapidReactGrabber.setPower(0);
-      },
-      //target subsystem
-      rapidReactGrabber
-    ));*/
+      () ->
+    {
+     
+      rapidReactGrabber.setPower(-1);
+    } , 
+    () ->
+    {
+      rapidReactGrabber.setPower(0);
+      
+      
+    }, rapidReactGrabber));
+
+
 
     
   }
@@ -201,7 +185,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return drivetrain.auton();
   }
   public void updateLogger(){
     Logger.updateEntries();
