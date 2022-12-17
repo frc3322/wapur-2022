@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
@@ -59,6 +60,8 @@ public class Drivetrain extends SubsystemBase {
     FRMotor.burnFlash();
     BLMotor.burnFlash();
     BRMotor.burnFlash();
+
+    robotDrive.setSafetyEnabled(true);
   
   }
 
@@ -100,20 +103,23 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public Command auton(){
-    return new InstantCommand(
+    return new SequentialCommandGroup(
+    new InstantCommand(
       ()->{
-        tankDrive(0.2, 0.2);
+        FLMotor.set(0.2);
+        FRMotor.set(0.2);
       }
       )
-      .andThen
+      ,
       (new WaitCommand(2))
-      .andThen(
+      ,(
         new InstantCommand(
           ()->
           {
-            tankDrive(0.2, 0.2);
+            FLMotor.set(0);
+            FRMotor.set(0);
           })
-      );
+     ) );
   }
 
 
