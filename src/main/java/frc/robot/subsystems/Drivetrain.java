@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.Constants.CAN;
+import io.github.oblarg.oblog.annotations.Log;
 //import io.github.oblarg.oblog.Loggable;
 //import io.github.oblarg.oblog.annotations.Config;
 //import io.github.oblarg.oblog.annotations.Log;
@@ -23,17 +24,17 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class Drivetrain extends SubsystemBase {
 
-  private final CANSparkMax FRMotor = new CANSparkMax(CAN.FR, MotorType.kBrushless);
-  private final CANSparkMax FLMotor = new CANSparkMax(CAN.FL, MotorType.kBrushless);
+  public final CANSparkMax FRMotor = new CANSparkMax(CAN.FR, MotorType.kBrushless);
+  public final CANSparkMax FLMotor = new CANSparkMax(CAN.FL, MotorType.kBrushless);
   private final CANSparkMax BLMotor = new CANSparkMax(CAN.BL, MotorType.kBrushless);
   private final CANSparkMax BRMotor = new CANSparkMax(CAN.BR, MotorType.kBrushless);
 
   private final DifferentialDrive robotDrive = new DifferentialDrive(FLMotor, FRMotor);
 
   SlewRateLimiter accelLimit = new SlewRateLimiter(1.2);
-  SlewRateLimiter turnLimit = new SlewRateLimiter(1);
+  SlewRateLimiter turnLimit = new SlewRateLimiter(2);
 
- // @Log
+  @Log
   private double hi = 0.01;
 
   /** Creates a new ExampleSubsystem. */
@@ -61,8 +62,8 @@ public class Drivetrain extends SubsystemBase {
     BLMotor.burnFlash();
     BRMotor.burnFlash();
 
-    robotDrive.setSafetyEnabled(true);
-  
+    robotDrive.setSafetyEnabled(false);
+
   }
 
   @Override
@@ -77,6 +78,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void drive(double speed, double turn){
+    turn = 0.5 * turn + 0.5 * Math.pow(turn, 3);
     robotDrive.curvatureDrive(accelLimit.calculate(speed), turnLimit.calculate(turn), speed<0.04);
     robotDrive.feed();
   }
@@ -102,26 +104,8 @@ public class Drivetrain extends SubsystemBase {
   robotDrive.feed();
   }
 
-  public Command auton(){
-    return new SequentialCommandGroup(
-    new InstantCommand(
-      ()->{
-        FLMotor.set(0.2);
-        FRMotor.set(0.2);
-      }
-      )
-      ,
-      (new WaitCommand(2))
-      ,(
-        new InstantCommand(
-          ()->
-          {
-            FLMotor.set(0);
-            FRMotor.set(0);
-          })
-     ) );
-  }
-
+ 
+  
 
 
   

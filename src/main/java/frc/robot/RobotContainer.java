@@ -15,7 +15,9 @@ import frc.robot.subsystems.RapidReactGrabber;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 
 /**
@@ -121,7 +123,7 @@ public class RobotContainer {
     testController.a().whenHeld(new StartEndCommand(
       () -> {
         //onInit
-        tennisGrab.setPowerElevator(0.2);
+        tennisGrab.setPowerElevator(0.4);
       },
       () -> {
         //onEnd
@@ -136,7 +138,7 @@ public class RobotContainer {
     testController.b().whenHeld(new StartEndCommand(
       () -> {
         //onInit
-        tennisGrab.setPowerElevator(-0.2);
+        tennisGrab.setPowerElevator(-0.4);
       },
       () -> {
         //onEnd
@@ -185,9 +187,29 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return drivetrain.auton();
+    return new autocommand();
   }
   public void updateLogger(){
     Logger.updateEntries();
   }
+
+  private class autocommand extends SequentialCommandGroup{
+    private autocommand(){
+      addCommands(
+        new RunCommand(()->
+        {
+          drivetrain.FLMotor.set(-0.08);
+          drivetrain.FRMotor.set(-0.08);
+        }, drivetrain)
+       
+       
+      );
+    }
+    
+  }
+
 }
+
+
+
+
